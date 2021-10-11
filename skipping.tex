@@ -1,0 +1,87 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage[round]{natbib}
+
+\begin{document}
+
+\newcommand{\jj}{\sqrt{1+\left(y'\right)^2}}
+\section*{Abstract}
+In this short article I discuss skipping ropes
+
+
+
+\section{Introduction}
+
+The dynamics of skipping ropes is an everyday yet fascinating topic.
+Here I analyse the dynamics of a slowly rotating skipper.
+
+
+
+\citep{mohazzabi1999}
+
+
+With arclength $s$ and Cartesian $(x,y)$ coordinates and forces
+$F_x,F_y$ and tensions $T_x,T_y$ we get
+
+\begin{eqnarray}
+  \frac{dT_x}{dx}=-F_x\jj\label{Tx}\\
+  \frac{dT_y}{dx}=-F_y\jj\label{Ty}
+  \end{eqnarray}
+
+\begin{equation}
+  \frac{T_y}{T_x}=\frac{dy}{dx}=y'
+\end{equation}
+
+So (writing $T_x=T$ for convenience)
+
+\begin{equation}
+(T_y)'=(y'T)'=y''T+y'T'=-F_y\jj
+\end{equation}
+
+Solving for $T$:
+
+\begin{eqnarray}
+  T &=& -(y'')^{-1}\left[F_y\jj + y'T'\right]\nonumber\\
+  &=& -(y'')^{-1}\left[F_y\jj -y'F_x\jj\right]\nonumber\\
+    &=& (y'')^{-1}\jj(y'F_x-F_y)\label{eqforT}
+\end{eqnarray}
+
+Differentiating equation~\ref{eqforT}:
+
+\begin{eqnarray}
+  T'&=& \left[(y'')^{-1}\jj(y'F_x-F_y)\right]'\nonumber\\
+  &=& -(y'')^{-2}y'''\jj\left[y'F_x-F_y\right]\nonumber\\
+  &{}& +\frac{y'}{\jj}(y'F_x-F_y)\nonumber\\
+  &{}& \quad\quad+(y'')^{-1}\jj\left(y'F_x-F_y)'\right)
+\end{eqnarray}
+
+Substituting for $T'$ from equation~\ref{Tx} we get
+
+\begin{eqnarray}
+  (y'')^{-2}y'''\jj(y'F_x-F_y)=&+&F_x\jj\nonumber\\
+  &+&\frac{y'}{\jj}(y'F_x-F_y)\\
+  &+&(y'')^{-1}\jj(y'F_x -F_y)'\nonumber
+\end{eqnarray}
+  
+
+Solving for $y'''$ and simplifying gives
+\begin{equation}
+  y'''=\frac{(y'')^2F_x}{y'F_x-F_y}
+  + \frac{y'(y'')^2}{1+(y')^2}
+  + \frac{y''(y'F_x-F_y)'}{y'F_x-F_y}
+\end{equation}
+
+As a consistency check if we have $F_x=0,F_y=-1$ [corresponding to a
+  uniform vertical gravitational field], we would have
+
+\begin{equation}
+  y'''=\frac{y'(y'')^2}{1+(y')^2}
+\end{equation}
+
+which is satisfied by $y=a\cosh(x/a)$, the standard equation for a
+catenary.
+
+
+\bibliography{skipping}
+\bibliographystyle{plainnat}
+\end{document}
