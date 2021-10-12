@@ -2,6 +2,10 @@ library("deSolve")
 Omega <- -0.15
 source("usefulfuncs.R")
 
+## This solves the special case of a centrifugal force field plus
+## Euler force field.  The general case is solved in anal2.R
+
+
 ## to go from the "no turn" case (black) to the turning case (red), we
 ## need to match three things: (1) black line to intersect red line at
 ## x~=-0.8,y=0; (2) black line to intersect red lne at x~=+0.8,y=0;
@@ -17,7 +21,6 @@ source("usefulfuncs.R")
 ## following we calculate skipping rope for turning and no turning.
 ## plot the no-turning case, do not plot the turning case until after
 ## we have found the optimal parameters
-
 
 ## First find where the no-turn case intersects y=0 (hands):
 
