@@ -25,23 +25,27 @@ library("deSolve")
     ))
 }
 
+`free_cord` <- function (t, Z, mu) {
+    
+    y    <- Z[1] 
+    yd   <- Z[2]
+    ydd  <- Z[3]
+    x <- t
 
-## to go from the "no turn" case (black) to the turning case (red), we
-## need to match three things: (1) black line to intersect red line at
-## x~=-0.8,y=0; (2) black line to intersect red lne at x~=+0.8,y=0;
-## (3) arc lengths to match.
+    Fx     <- mu[[1]](x,y)
+    Fy     <- mu[[2]](x,y)
+    Fxdash <- mu[[3]](x,y)
+    Fydash <- mu[[4]](x,y)
 
-
-## In the following, the third order ODE is solved with three
-## independent variables, y,yd,ydd [for y,dydt, and d2y/dx2] but also
-## arc length s.  We know that ds/dx = sqrt(1+yd^2) and that is the
-## fourth variable in the numerics.
-
-
-## following we calculate skipping rope for turning and no turning.
-## plot the no-turning case, do not plot the turning case until after
-## we have found the optimal parameters
-
+    jj1 <- ydd^2*Fx/(yd*Fx-Fy)
+    jj2 <- yd*ydd^2/(1+yd^2)
+    jj3 <- ydd*(ydd*Fx + yd*Fxdash - Fydash)/(yd*Fx-Fy)
+    return(list(c(
+        yd   = Z[2],
+        ydd  = Z[3],
+        yddd = jj1 + jj2 + jj3
+    )))
+}
 
 M <- function(out){cbind(out[,1],out[,2])}
 rev <- function(x){cbind(-x[,1],x[,2])}
@@ -51,11 +55,6 @@ circ <- function(x0,y0,r,...){
     points(x0+cos(th)*r,y0+sin(th)*r,...)
 }
 
-
-## So a "good" turning solution matches the no-turn case in terms of:
-## f(x_root)=0,f(-xroot)=0, and total arclength = x.  This is three
-## requirements and we have three degrees of freedom corresponding to
-## the three constants of integration in our third order ODE.
 
 `badness` <- function(start=c(y1, y2, y3)){
     yini <- c(start,s=0)  # recall that 's' is arclength
