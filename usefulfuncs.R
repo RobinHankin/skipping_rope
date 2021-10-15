@@ -32,18 +32,19 @@ library("deSolve")
     ydd  <- Z[3]
     x <- t
 
-    Fx     <- mu[[1]](x,y)
-    Fy     <- mu[[2]](x,y)
-    Fxdash <- mu[[3]](x,y)
-    Fydash <- mu[[4]](x,y)
+    F      <- mu[[1]](x,y)
+    Fx     <- mu[[2]](x,y)
+    Fy     <- mu[[3]](x,y)
 
-    jj1 <- ydd^2*Fx/(yd*Fx-Fy)
-    jj2 <- yd*ydd^2/(1+yd^2)
-    jj3 <- ydd*(ydd*Fx + yd*Fxdash - Fydash)/(yd*Fx-Fy)
+    G      <- mu[[4]](x,y)
+    Gx     <- mu[[5]](x,y)
+    Gy     <- mu[[6]](x,y)
+
+
     return(list(c(
         yd   = Z[2],
         ydd  = Z[3],
-        yddd = jj1 + jj2 + jj3
+        yddd = yd*ydd^2/(1+yd^2) + ydd*(2*ydd*F + yd*Fx + yd^2*Fy - Gx -yd*Gy)/(yd*F-G)
     )))
 }
 

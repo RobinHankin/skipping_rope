@@ -20,58 +20,80 @@ Here I analyse the dynamics of a slowly rotating skipper.
 \citep{mohazzabi1999}
 
 
-With arclength $s$ and Cartesian $(x,y)$ coordinates and forces
-$F_x,F_y$ and tensions $T_x,T_y$ we get
+With arclength $s$ and Cartesian $(x,y)$ coordinates and [possibly
+  nonconservative] force field
+
+\begin{equation}
+  \begin{bmatrix}F\\G\end{bmatrix}
+    =
+    \begin{bmatrix}F(x,y)\\G(x,y)\end{bmatrix}
+\end{equation}
+and tensions $T,U$ [formerly $T_x,T_y$] we get
 
 \begin{eqnarray}
-  \frac{dT_x}{dx}=-F_x\jj\label{Tx}\\
-  \frac{dT_y}{dx}=-F_y\jj\label{Ty}
+  \frac{dT}{dx}=-F\jj\label{Tx}\\
+  \frac{dU}{dx}=-G\jj\label{Ty}
   \end{eqnarray}
 
 \begin{equation}
-  \frac{T_y}{T_x}=\frac{dy}{dx}=y'
+  \frac{U}{T}=\frac{dy}{dx}=y'
 \end{equation}
 
 So (writing $T_x=T$ for convenience)
 
 \begin{equation}
-(T_y)'=(y'T)'=y''T+y'T'=-F_y\jj
+U'=(y'T)'=y''T+y'T'=-G\jj
 \end{equation}
 
 Solving for $T$:
 
 \begin{eqnarray}
-  T &=& -(y'')^{-1}\left[F_y\jj + y'T'\right]\nonumber\\
-  &=& -(y'')^{-1}\left[F_y\jj -y'F_x\jj\right]\nonumber\\
-    &=& (y'')^{-1}\jj(y'F_x-F_y)\label{eqforT}
+  T &=& -(y'')^{-1}\left[G\jj + y'T'\right]\nonumber\\
+  &=& -(y'')^{-1}\left[G\jj -y'F\jj\right]\nonumber\\
+    &=& (y'')^{-1}\jj(y'F-G)\label{eqforT}
 \end{eqnarray}
 
 Differentiating equation~\ref{eqforT}:
 
 \begin{eqnarray}
-  T'&=& \left[(y'')^{-1}\jj(y'F_x-F_y)\right]'\nonumber\\
-  &=& -(y'')^{-2}y'''\jj\left[y'F_x-F_y\right]\nonumber\\
-  &{}& +\frac{y'}{\jj}(y'F_x-F_y)\nonumber\\
-  &{}& \quad\quad+(y'')^{-1}\jj\left(y'F_x-F_y)'\right)
+  T'&=& \left[(y'')^{-1}\jj(y'F-G)\right]'\nonumber\\
+  &=& -(y'')^{-2}y'''\jj\left[y'F-G\right]\nonumber\\
+  &{}& \qquad +\frac{y'}{\jj}(y'F-G)\nonumber\\
+  &{}& \quad\quad + (y'')^{-1}\jj\left[y'F-G\right]'
+\end{eqnarray}
+
+Now we use the fact that $F'=F_x+y'F_y$ and $G'=G_x+y'G_y$ (where
+subscripts denote partial differentials).  This gives
+$\left[y'F-G\right]'=y''F+y'F_x+(y')^2F_y-G_x-y'G_y$ so
+
+\begin{eqnarray}
+ T' &=& -(y'')^{-2}y'''\jj\left(y'F-G\right)\nonumber\\
+  &{}&\quad +\frac{y'}{\jj}(y'F-G)\nonumber\\
+ &{}& \quad\quad+(y'')^{-1}\jj
+ \left( y''F+y'F_x+(y')^2F_y-G_x-y'G_y \right)
 \end{eqnarray}
 
 Substituting for $T'$ from equation~\ref{Tx} we get
 
 \begin{eqnarray}
-  (y'')^{-2}y'''\jj(y'F_x-F_y)=&+&F_x\jj\nonumber\\
-  &+&\frac{y'}{\jj}(y'F_x-F_y)\\
-  &+&(y'')^{-1}\jj(y'F_x -F_y)'\nonumber
+  (y'')^{-2}y'''\jj(y'F-G)=&+&F\jj\nonumber\\
+  &+&\frac{y'}{\jj}(y'F-G)\\
+  &+&(y'')^{-1}\jj\left(y''F+y'F_x+(y')^2F_y-G_x-y'G_y  \right)
+  \nonumber
 \end{eqnarray}
   
 
 Solving for $y'''$ and simplifying gives
-\begin{equation}
-  y'''=\frac{(y'')^2F_x}{y'F_x-F_y}
+\begin{eqnarray}
+  y'''&=&\frac{(y'')^2F}{y'F-G}
   + \frac{y'(y'')^2}{1+(y')^2}
-  + \frac{y''(y'F_x-F_y)'}{y'F_x-F_y}
-\end{equation}
+  + \frac{y''\left(y''F+y'F_x+(y')^2F_y-G_x-y'G_y \right)}{y'F-G}\\
+ &=&
+   \frac{y'(y'')^2}{1+(y')^2}
+  + \frac{y''\left(2y''F+y'F_x-G_x\right)}{y'F-G}
+\end{eqnarray}
 
-As a consistency check if we have $F_x=0,F_y=-1$ [corresponding to a
+As a consistency check if we have $F=0,G=-1$ [corresponding to a
   uniform vertical gravitational field], we would have
 
 \begin{equation}
@@ -79,16 +101,14 @@ As a consistency check if we have $F_x=0,F_y=-1$ [corresponding to a
 \end{equation}
 
 which is satisfied by $y=a\cosh(x/a)$, the standard equation for a
-catenary.  Further, if $F_x=-1,F_y=0$ [corresponding to a horizontal
+catenary.  Further, if $F=-1,G=0$ [corresponding to a horizontal
   gravitational field] we would have
 
 \begin{equation}
-  y''' = (y'')^2(2/y'+y'/(1+(y')^2)),
+  y''' = \frac{y'(y'')^2\left(y''\right)^2}{1+(y')^2}-\frac{2y''}{y'}
 \end{equation}
 
 satisfied by $y=a\operatorname{arcosh}(x/a)$.
-
-
 
 \bibliography{skipping}
 \bibliographystyle{plainnat}
