@@ -1,5 +1,12 @@
 library("deSolve")
 
+zapper <- function(x,minval=1e-3){
+    x[x==0] <- minval
+    small <- abs(x)<minval
+    if(any(small)){x[small] <- minval*sign(x[small])}
+    return(x)
+}
+          
 `vdpol` <- function (t, Z, mu) {
     omega <- mu[1]
     Omega <- mu[2]
@@ -26,7 +33,7 @@ library("deSolve")
 }
 
 `free_cord` <- function (t, Z, mu) {
-    
+
     y    <- Z[1] 
     yd   <- Z[2]
     ydd  <- Z[3]
@@ -41,10 +48,15 @@ library("deSolve")
     Gy     <- mu[[6]](x,y)
 
 
+    thing <- yd*ydd^2/(1+yd^2) + ydd*(2*ydd*F + yd*Fx + yd^2*Fy - Gx -yd*Gy)/zapper(yd*F-G)
+
+
+    if(abs(thing) > 1e50){stop()}
+
     return(list(c(
         yd   = Z[2],
         ydd  = Z[3],
-        yddd = yd*ydd^2/(1+yd^2) + ydd*(2*ydd*F + yd*Fx + yd^2*Fy - Gx -yd*Gy)/(yd*F-G)
+        yddd = yd*ydd^2/(1+yd^2) + ydd*(2*ydd*F + yd*Fx + yd^2*Fy - Gx -yd*Gy)/zapper(yd*F-G)
     )))
 }
 

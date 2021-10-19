@@ -60,6 +60,7 @@ no_turn_left_plot  <- ode(c(y1=-1, y2=-0, y3=-4.0, s=0),func=vdpol,times=tt, par
 
 ## Plot commands start
 plot(NA,asp=1,xlim=c(-0.1,0.1),ylim=c(-1.1,-0.9))
+plot(NA,asp=1,xlim=c(-1,1),ylim=c(-1,0))
 
 abline(v=0)
 abline(h=c(0,-1))
