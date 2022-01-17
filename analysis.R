@@ -3,7 +3,7 @@ Omega <- -0.15
 source("usefulfuncs.R")
 
 ## This solves the special case of a centrifugal force field plus
-## Euler force field.  The general case is solved in anal2.R
+## Euler force field.  The general (2D) case is solved in anal2.R
 
 
 ## to go from the "no turn" case (black) to the turning case (red), we
