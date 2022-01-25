@@ -33,6 +33,7 @@ zapper <- function(x,minval=1e-3){
 }
 
 `free_cord` <- function (t, Z, mu) {
+    print(t)
 
     y    <- Z[1] 
     yd   <- Z[2]

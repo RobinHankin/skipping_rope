@@ -70,14 +70,14 @@ X'=\frac{dX}{ds}=\frac{dx}{ds}\frac{dX}{dx}+\frac{dy}{ds}\frac{dX}{dy}=X_x\cos\t
 Rearranging:
 
 \begin{equation}
-T=\frac{G+F\tan\theta}{\theta'\sec^2\theta}
+T=\frac{-G-F\tan\theta}{\theta'\sec^2\theta}
 \end{equation}
 
 Differentiate once more with respect to $s$ and note again that
 $T'=-F$ to obtain
 
 \begin{equation}
-  -F=\frac
+  +F=\frac
 {    \theta'\sec^2\theta\left[G'+F'\tan\theta+F\theta'\sec^2\theta\right]-(G+F\tan\theta)(\theta''\sec^2\theta+2(\theta')^2\sec^2\theta\tan\theta)
   }{
     (\theta')^2\sec^4\theta
@@ -87,40 +87,45 @@ $T'=-F$ to obtain
 where $F'=dF/ds=F_x\cos\theta+F_y\sin\theta$ and
 $G'=dG/ds=G_x\cos\theta+G_y\sin\theta$.  This is a second-order
 differential equation in $\theta=\theta(s)$.
+Cancelling $\sec^2\theta$  gives
+
+\begin{equation}
+  F=\frac{\theta'\left[G'+F'\tan\theta+F\theta'\sec^2\theta\right]-(G+F\tan\theta)(\theta''+2(\theta')^2\tan\theta)
+  }{
+    (\theta')^2\sec^2\theta
+  }
+\end{equation}
+
+
 Algebra gives
 
-
 \begin{equation}
-  (G+F\tan\theta)(\theta''\sec^2\theta+2(\theta')^2\sec^2\theta\tan\theta)=
-  F(\theta')^2\sec^4\theta+
-    \theta'\sec^2\theta\left[G'+F'\tan\theta+F\theta'\sec^2\theta\right]
+  F(\theta')^2\sec^2\theta + (G+F\tan\theta)(\theta''+2(\theta')^2\tan\theta)
+  =
+\theta'\left[G'+F'\tan\theta+F\theta'\sec^2\theta\right]
 \end{equation}
 
+\begin{eqnarray}
+  (G+F\tan\theta)(\theta''+2(\theta')^2\tan\theta)
+  &=&
+  -F(\theta')^2\sec^2\theta
+  +
+  \theta'\left[G'+F'\tan\theta+F\theta'\sec^2\theta\right]\\
+  &=&    \theta'\left[G'+F'\tan\theta\right] 
+\end{eqnarray}
+
 \begin{equation}
-\theta''\sec^2\theta+2(\theta')^2\sec^2\theta\tan\theta=\frac{
-  F(\theta')^2\sec^4\theta+
-    \theta'\sec^2\theta\left[G'+F'\tan\theta+F\theta'\sec^2\theta\right]}{G+F\tan\theta}
+  \theta''=
+  \frac{
+    \theta'\left[G'+F'\tan\theta\right]
+  }{
+    G+F\tan\theta
+  }
+  -2(\theta')^2\tan\theta
 \end{equation}
 
 
-\begin{equation}
-  \theta''=\cos^2\theta\left[\frac{
-  F(\theta')^2\sec^4\theta+
-    \theta'\sec^2\theta\left[G'+F'\tan\theta+F\theta'\sec^2\theta\right]}{G+F\tan\theta}
--2(\theta')^2\sec^2\theta\tan\theta\right]
-\end{equation}
 
-\begin{equation}
-  \theta''=\left[\frac{
-  F(\theta')^2\sec^2\theta+
-    \theta'\left[G'+F'\tan\theta+F\theta'\sec^2\theta\right]}{G+F\tan\theta}
--2(\theta')^2\tan\theta\right]
-\end{equation}
-
-Set $F=F'=0$:
-
-
-  
 \bibliography{skipping}
 \bibliographystyle{plainnat}
 \end{document}
