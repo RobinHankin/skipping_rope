@@ -89,3 +89,32 @@ circ <- function(x0,y0,r,...){
     return(sum(mismatches^2))
 }
 
+
+`free_cord_theta` <- function (t, Z, mu) {  # t == arc length; we have a *second order* ODE
+    print(t)
+
+    theta     <- Z[1] # y -> theta
+    thetadash <- Z[2] # yd -> ydash -> dtheta/ds
+    x         <- Z[3] # Cartesian coord x
+    y         <- Z[4] # Cartesian coord y
+
+    F      <- mu[[1]](x,y)
+    Fx     <- mu[[2]](x,y)
+    Fy     <- mu[[3]](x,y)
+
+    G      <- mu[[4]](x,y)
+    Gx     <- mu[[5]](x,y)
+    Gy     <- mu[[6]](x,y)
+
+    Fdash <- Fx*cos(theta) + Fy*sin(theta)  # Fdash = dF/ds
+    Gdash <- Gx*cos(theta) + Gy*sin(theta)  # Gdasg = dG/ds
+
+
+    return(list(c(
+        thetadash   = thetadash,
+        thetadashdash  = thetadash*(Gdash + Fdash*tan(theta))/(G+F*tan(theta)) - 2*thetadash^2*tan(theta),
+        xdash = cos(theta),
+        ydash = sin(theta)
+        
+    )))
+}
