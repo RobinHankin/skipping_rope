@@ -8,8 +8,6 @@
 \section*{Abstract}
 In this short article I discuss skipping ropes
 
-
-
 \section{Introduction}
 
 The dynamics of skipping ropes is an everyday yet fascinating topic.
@@ -85,7 +83,9 @@ $T'=-F$ to obtain
 \end{equation}
 
 where $F'=dF/ds=F_x\cos\theta+F_y\sin\theta$ and
-$G'=dG/ds=G_x\cos\theta+G_y\sin\theta$.  This is a second-order
+$G'=dG/ds=G_x\cos\theta+G_y\sin\theta$.
+
+This is a second-order
 differential equation in $\theta=\theta(s)$.
 Cancelling $\sec^2\theta$  gives
 
@@ -124,6 +124,10 @@ Algebra gives
   -2(\theta')^2\tan\theta
 \end{equation}
 
+and if $F=G=0$ we recover $\theta(s)=c$ as a solution.  Recalling that
+$F'=dF/ds=F_x\cos\theta+F_y\sin\theta$ and
+$G'=dG/ds=G_x\cos\theta+G_y\sin\theta$ we can solve this system using
+ODE solvers such as {\tt ode()} in the {\tt deSolve} package.
 
 
 \bibliography{skipping}
