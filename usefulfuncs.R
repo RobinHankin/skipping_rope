@@ -94,7 +94,7 @@ circ <- function(x0,y0,r,...){
     print(t)
 
     theta     <- Z[1] # y -> theta
-    thetadash <- Z[2] # yd -> ydash -> dtheta/ds
+    thetadash <- Z[2] # yd -> ydash -> dtheta/ds [sort of a curvature]
     x         <- Z[3] # Cartesian coord x
     y         <- Z[4] # Cartesian coord y
 
@@ -117,4 +117,37 @@ circ <- function(x0,y0,r,...){
         ydash = sin(theta)
         
     )))
+}
+
+quiver  <- function(x,y,u,v,scale=1,add=FALSE){
+
+    xpos <- u
+    xpos[] <- x[slice.index(u,1)]
+
+    ypos <- v
+    ypos[] <- y[slice.index(u,2)]
+
+    
+    speed <- sqrt(u*u+v*v)
+    maxspeed <- max(speed)
+    
+    u <- u*scale/maxspeed
+    v <- v*scale/maxspeed
+
+    print(min(abs(u)))
+    print(min(abs(v)))
+
+    if(!add){ matplot(xpos,ypos,type="p",asp=1,cex=0) }
+    arrows(xpos,ypos,xpos+u,ypos+v,length=0.03)
+    
+}
+
+if(FALSE){
+x <- 101:130
+y <- 1:30
+u <-  matrix(0,30,30)
+u <- col(u)-15.1
+v <- -(row(u)-15.1)
+quiver(x,y,u,v)
+
 }
