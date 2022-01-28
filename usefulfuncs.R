@@ -119,23 +119,24 @@ circ <- function(x0,y0,r,...){
     )))
 }
 
-quiver  <- function(x,y,u,v,scale=1,add=FALSE){
+quiver  <- function(x,y,f,scale=1,add=FALSE){
 
-    xpos <- u
-    xpos[] <- x[slice.index(u,1)]
+    jj <- outer(x,y)
+    xpos <- jj
+    xpos[] <- x[slice.index(jj,1)]
 
-    ypos <- v
-    ypos[] <- y[slice.index(u,2)]
+    ypos <- jj
+    ypos[] <- y[slice.index(jj,2)]
 
     
+    u[] <- -(f$F)(xpos,ypos)   # F
+    v[] <- -(f$G)(xpos,ypos)   # G
+
     speed <- sqrt(u*u+v*v)
     maxspeed <- max(speed)
     
     u <- u*scale/maxspeed
     v <- v*scale/maxspeed
-
-    print(min(abs(u)))
-    print(min(abs(v)))
 
     if(!add){ matplot(xpos,ypos,type="p",asp=1,cex=0) }
     arrows(xpos,ypos,xpos+u,ypos+v,length=0.03)
