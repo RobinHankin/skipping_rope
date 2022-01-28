@@ -129,8 +129,8 @@ quiver  <- function(x,y,f,scale=1,add=FALSE){
     ypos[] <- y[slice.index(jj,2)]
 
     
-    u[] <- -(f$F)(xpos,ypos)   # F
-    v[] <- -(f$G)(xpos,ypos)   # G
+    u <- -(f$F)(xpos,ypos)   # F
+    v <- -(f$G)(xpos,ypos)   # G
 
     speed <- sqrt(u*u+v*v)
     maxspeed <- max(speed)
