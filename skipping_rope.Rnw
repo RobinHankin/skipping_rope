@@ -71,12 +71,59 @@
 \newcommand{\Om}{\mathbf{\Omega}}
 \newcommand{\rr}{\mathbf{r}}
 
+Skipping (``jump rope'') is a popular pastime in which the participant
+holds both ends of a rope, one in each hand.  The rope is rotated
+about the frontal axis at about waist height; one must jump at the the
+appropriate time to avoid tripping (figure~\ref{skipping_stickman}).
 
-Consider figure~\ref{skipping_stickman}.  We
-have~$\dot{\om}=\hat{\om}\times\Om$; the Euler force is
-$-\dot{\om}\times\rr=(\hat{\om}\times\Om)\times\rr$.  Choosing a
-coordinate system $x,y,z$ in which the rope has $z=0$ and $y$ is
-vertical, we find that the Euler force is simply $(-\Omega y,\Omega x)$.
+The motion described above is typically carried out with a rope of
+length about three meters which is swung at about 2 revolutions per
+second.  Typical jump heights are around 3-5 cm.  An adept can
+maintain this cadence for many minutes.
+
+The behaviour of a skipping rope is an interesting mechanical problem.
+\citet{mohazzabi1999} consider the case of a uniform flexible string
+rotating (zero $g$; no air resistance) at angular velocity $\omega$
+about a horizontal axis with a known length and two fixed points on
+the axis, neglecting gravity.  They show that such a rope has a form
+expressible in terms of Legendre's elliptic integrals, and go on to
+discuss approximate methods for including the effect of gravity.
+\citet{nordmark2007} express the solution in terms of the Jacobi
+$\operatorname{sn}$ function and give an application in terms of
+vertical-axis wind turbines.  They refer to the resulting shape as a
+{\em troposkein}.
+
+The basic skipping motion is of course modified and extended by elite
+skippers.  Here I consider one such trick (distinct from the
+``$360^\circ$ spin'') in which the athlete skips as before but
+simultaneously, and slowly, rotates about a vertical axis: if one
+starts facing North, one gradually turns to face East, South, West,
+and returns to North.  Typically one full rotation takes about ten or
+twenty turns of the rope.  The author\footnote{Emphatically {\em not}
+an elite skipper.} found this particular trick to be unexpectedly
+difficult, which was the inspiration for this work.
+
+It is convenient to use a reference frame in which the rope is at rest
+(figure~\ref{skipping_stickman}).  We
+have~$\dot{\om}=\hat{\om}\times\Om$; the Euler force
+$\mathbf{e}=-\dot{\om}\times\rr=(\hat{\om}\times\Om)\times\rr$.
+Choosing a coordinate system $x,y,z$ in which the rope has $z=0$ and
+$y$ is vertical, we find that the Euler force $\mathbf{e}$ is simply
+$(-\Omega y,\Omega x)$ per unit mass.  Under these circumstances, we
+observe that $\nabla\times\mathbf{e}=\Omega\hat{z}\neq 0$: the Euler
+force is nonconservative.
+
+
+\citet{mohazzabi1999} present an analysis of skipping ropes that uses
+a variational approach: in essence, the rope adopts a minimal
+potential energy configuration.  Noting that the centrifugal force
+field $\om\times(\om\times\rr)$ {\em is} conservative [it is the
+  gradient of a scalar] we see that the rotating skipping rope is not
+susceptible to the variational approach: the rope does not have a
+well-defined potential energy to minimize as potentials are
+path-dependent.
+
+
 
 \begin{figure}[h]
   \begin{center}
@@ -85,16 +132,8 @@ vertical, we find that the Euler force is simply $(-\Omega y,\Omega x)$.
   \end{center}
 \end{figure}
 
-\cite{lowry1951}
-
-
-<<>>=
-(1:10)^2
-@ 
-
 {\bf\large In the following, a dash means differentiation with respect
   to arc length}.
-
 
 With arclength $s$ inclined at $\theta$ to the horizontal and
 Cartesian $(x,y)$ coordinates and [possibly nonconservative] force
@@ -157,11 +196,9 @@ $T'=-F$ to obtain
 \end{equation}
 
 where $F'=dF/ds=F_x\cos\theta+F_y\sin\theta$ and
-$G'=dG/ds=G_x\cos\theta+G_y\sin\theta$.
-
-This is a second-order
-differential equation in $\theta=\theta(s)$.
-Cancelling $\sec^2\theta$  gives
+$G'=dG/ds=G_x\cos\theta+G_y\sin\theta$.  This is a second-order
+differential equation in $\theta=\theta(s)$.  Cancelling
+$\sec^2\theta$ gives
 
 \begin{equation}
   F=\frac{\theta'\left[G'+F'\tan\theta+F\theta'\sec^2\theta\right]-(G+F\tan\theta)(\theta''+2(\theta')^2\tan\theta)
@@ -173,21 +210,21 @@ Cancelling $\sec^2\theta$  gives
 
 Algebra gives
 
-\begin{equation}
-  F(\theta')^2\sec^2\theta + (G+F\tan\theta)(\theta''+2(\theta')^2\tan\theta)
-  =
-\theta'\left[G'+F'\tan\theta+F\theta'\sec^2\theta\right]
-\end{equation}
-
-\begin{eqnarray}
-  (G+F\tan\theta)(\theta''+2(\theta')^2\tan\theta)
-  &=&
-  -F(\theta')^2\sec^2\theta
-  +
-  \theta'\left[G'+F'\tan\theta+F\theta'\sec^2\theta\right]\\
-  &=&    \theta'\left[G'+F'\tan\theta\right] 
-\end{eqnarray}
-
+%\begin{equation}
+%  F(\theta')^2\sec^2\theta + (G+F\tan\theta)(\theta''+2(\theta')^2\tan\theta)
+%  =
+%\theta'\left[G'+F'\tan\theta+F\theta'\sec^2\theta\right]
+%\end{equation}
+%
+%\begin{eqnarray}
+%  (G+F\tan\theta)(\theta''+2(\theta')^2\tan\theta)
+%  &=&
+%  -F(\theta')^2\sec^2\theta
+%  +
+%  \theta'\left[G'+F'\tan\theta+F\theta'\sec^2\theta\right]\\
+%  &=&    \theta'\left[G'+F'\tan\theta\right] 
+%\end{eqnarray}
+%
 \begin{equation}
   \theta''=
   \frac{
@@ -280,10 +317,8 @@ quiver(x,y,lf_euler(),scale=0.07,add=T)
 \end{figure}
 
 
-
-
 \bibliography{skipping}
-\bibliographystyle{plainnat}
+
 
 \end{document}
 
