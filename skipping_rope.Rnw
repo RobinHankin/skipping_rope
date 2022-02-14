@@ -4,6 +4,7 @@
 \usepackage{bbm}
 \usepackage{bm}
 \usepackage{amsfonts}
+\usepackage{amsmath}
 \usepackage{wasysym}
 \usepackage{xypic}
 
@@ -92,7 +93,120 @@ vertical, we find that the Euler force is simply $(-\Omega y,\Omega x)$.
 (1:10)^2
 @ 
 
-\bibliography{template}
+{\bf\large In the following, a dash means differentiation with respect
+  to arc length}.
+
+
+With arclength $s$ inclined at $\theta$ to the horizontal and
+Cartesian $(x,y)$ coordinates and [possibly nonconservative] force
+field
+
+\begin{equation}
+  \begin{bmatrix}F\\G\end{bmatrix}
+    =
+    \begin{bmatrix}F(x,y)\\G(x,y)\end{bmatrix}
+\end{equation}
+and tensions $T,U$ [formerly $T_x,T_y$] we get
+
+\begin{eqnarray}
+T'=  \frac{dT}{ds}=-F\label{Tx}\\
+U'=  \frac{dU}{ds}=-G\label{Ty}
+  \end{eqnarray}
+
+($F$ is upward and $G$ to the right).
+
+\begin{equation}
+  \frac{U}{T}=\frac{dy}{dx}=\tan\theta.
+\end{equation}
+
+
+\begin{equation}
+U=T\tan\theta\label{uttantheta}
+\end{equation}
+
+For any $X=X(s)$:
+\begin{equation}
+X'=\frac{dX}{ds}=\frac{dx}{ds}\frac{dX}{dx}+\frac{dy}{ds}\frac{dX}{dy}=X_x\cos\theta + X_y\sin\theta
+\end{equation}
+(here $X_x=dX/dx$ and $X_y=dX/dy$).  Differentiating equation
+\ref{uttantheta} with respect to $s$ gives:
+
+\begin{equation}
+  -G=dU/ds=U'=(T\tan\theta)'=T'\tan\theta + T\theta'\sec^2\theta
+\end{equation}
+
+
+\begin{equation}
+  T\theta'\sec^2\theta=G+F\tan\theta
+\end{equation}
+
+Rearranging:
+
+\begin{equation}
+T=\frac{-G-F\tan\theta}{\theta'\sec^2\theta}
+\end{equation}
+
+Differentiate once more with respect to $s$ and note again that
+$T'=-F$ to obtain
+
+\begin{equation}
+  +F=\frac
+{    \theta'\sec^2\theta\left[G'+F'\tan\theta+F\theta'\sec^2\theta\right]-(G+F\tan\theta)(\theta''\sec^2\theta+2(\theta')^2\sec^2\theta\tan\theta)
+  }{
+    (\theta')^2\sec^4\theta
+  }
+\end{equation}
+
+where $F'=dF/ds=F_x\cos\theta+F_y\sin\theta$ and
+$G'=dG/ds=G_x\cos\theta+G_y\sin\theta$.
+
+This is a second-order
+differential equation in $\theta=\theta(s)$.
+Cancelling $\sec^2\theta$  gives
+
+\begin{equation}
+  F=\frac{\theta'\left[G'+F'\tan\theta+F\theta'\sec^2\theta\right]-(G+F\tan\theta)(\theta''+2(\theta')^2\tan\theta)
+  }{
+    (\theta')^2\sec^2\theta
+  }
+\end{equation}
+
+
+Algebra gives
+
+\begin{equation}
+  F(\theta')^2\sec^2\theta + (G+F\tan\theta)(\theta''+2(\theta')^2\tan\theta)
+  =
+\theta'\left[G'+F'\tan\theta+F\theta'\sec^2\theta\right]
+\end{equation}
+
+\begin{eqnarray}
+  (G+F\tan\theta)(\theta''+2(\theta')^2\tan\theta)
+  &=&
+  -F(\theta')^2\sec^2\theta
+  +
+  \theta'\left[G'+F'\tan\theta+F\theta'\sec^2\theta\right]\\
+  &=&    \theta'\left[G'+F'\tan\theta\right] 
+\end{eqnarray}
+
+\begin{equation}
+  \theta''=
+  \frac{
+    \theta'\left[G'+F'\tan\theta\right]
+  }{
+    G+F\tan\theta
+  }
+  -2(\theta')^2\tan\theta
+\end{equation}
+
+and if $F=G=0$ we recover $\theta(s)=c$ as a solution.  Recalling that
+$F'=dF/ds=F_x\cos\theta+F_y\sin\theta$ and
+$G'=dG/ds=G_x\cos\theta+G_y\sin\theta$ we can solve this system using
+ODE solvers such as {\tt ode()} in the {\tt deSolve} package.
+
+
+\bibliography{skipping}
+\bibliographystyle{plainnat}
 
 \end{document}
 
