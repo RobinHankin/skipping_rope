@@ -33,7 +33,6 @@ zapper <- function(x,minval=1e-3){
 }
 
 `free_cord` <- function (t, Z, mu) {
-    print(t)
 
     y    <- Z[1] 
     yd   <- Z[2]
@@ -91,7 +90,6 @@ circ <- function(x0,y0,r,...){
 
 
 `free_cord_theta` <- function (t, Z, mu) {  # t == arc length; we have a *second order* ODE
-    print(t)
 
     theta     <- Z[1] # y -> theta
     thetadash <- Z[2] # yd -> ydash -> dtheta/ds [sort of a curvature]
@@ -129,8 +127,8 @@ quiver  <- function(x,y,f,scale=1,add=FALSE){
     ypos[] <- y[slice.index(jj,2)]
 
     
-    u <- -(f$F)(xpos,ypos)   # F
-    v <- -(f$G)(xpos,ypos)   # G
+    u <- (f$F)(xpos,ypos)   # F
+    v <- (f$G)(xpos,ypos)   # G
 
     speed <- sqrt(u*u+v*v)
     maxspeed <- max(speed)
@@ -152,3 +150,23 @@ v <- -(row(u)-15.1)
 quiver(x,y,u,v)
 
 }
+
+tension <- function(sol,f){
+    ## NB needs column headings of `sol` to be named
+    ## "s","theta","thetadash","x","y".
+
+    ## And here, argument "f" is something like "lf_euler()" or
+    ## "lf_2(g=10,Omega=1)
+
+    F <- (f$F)(sol$x, sol$y)
+    G <- (f$G)(sol$x, sol$y)
+
+    ## Below, Tx is the horizontal component of tension, Ty the vertical.
+        Tx <- -cos(sol$theta)^2*(G+F*tan(sol$theta))/(sol$thetadash) # sec() not defined!
+    Ty <- Tx*tan(sol$theta)
+    tension <- sqrt(Tx^2+Ty^2)
+
+
+    return(cbind(sol, F=F, G=G, tension=tension))
+}
+
