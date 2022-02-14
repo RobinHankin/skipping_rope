@@ -1,0 +1,99 @@
+% -*- mode: noweb; noweb-default-code-mode: R-mode; -*-
+\documentclass[article]{tragula}
+\usepackage{dsfont}
+\usepackage{bbm}
+\usepackage{bm}
+\usepackage{amsfonts}
+\usepackage{wasysym}
+\usepackage{xypic}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% declarations for tragula.cls
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% just as usual
+\author{Robin K. S. Hankin\\Auckland University of Technology}
+\title{Skipping ropes}
+%\VignetteIndexEntry{The foo package}
+
+%% for pretty printing and a nice hypersummary also set:
+\Plainauthor{Robin K. S. Hankin}
+\Plaintitle{Dynamics of skipping ropes}
+\Shorttitle{Dynamics of skipping ropes}
+
+\Abstract{This is the abstract about Skipping is blah blah blah}
+   
+\Keywords{key word one, key word two, squares \proglang{R}}
+\Plainkeywords{key word one, key word two, squares, R}
+
+%% publication information
+%% NOTE: This needs to filled out ONLY IF THE PAPER WAS ACCEPTED.
+%% If it was not (yet) accepted, leave them commented.
+ \Volume{VOL}
+ \Issue{ISS}
+ \Month{MONTH}
+ \Year{YEAR}
+ \Submitdate{yyyy-mm-dd}
+ \Acceptdate{yyyy-mm-dd}
+ \Repository{https://github.com/RobinHankin/tragula}
+
+%% The address of (at least) one author should be given
+%% in the following format:
+\Address{
+  Robin K. S. Hankin\\
+  Auckland University of Technology\\
+  2-14 Wakefield Street\\
+  Auckland, New Zealand\\
+  E-mail: \email{hankin.robin@gmail.com}\\
+  URL: \url{https://www.aut.ac.nz/profiles/robin-hankin}
+}
+
+
+%% It is also possible to add a telephone and fax number
+%% before the e-mail in the following format:
+%% Telephone: +43/1/31336-5053
+%% Fax: +43/1/31336-734
+
+%% for those who use Sweave please include the following line (with % symbols):
+%% need no \usepackage{Sweave.sty}
+
+%% end of declarations %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newsymbol\leqslant 1336
+
+\begin{document}
+
+\section{Introduction}
+
+\newcommand{\om}{\boldsymbol{\omega}}
+\newcommand{\Om}{\mathbf{\Omega}}
+\newcommand{\rr}{\mathbf{r}}
+
+
+Consider figure~\ref{skipping_stickman}.  We
+have~$\dot{\om}=\hat{\om}\times\Om$; the Euler force is
+$-\dot{\om}\times\rr=(\hat{\om}\times\Om)\times\rr$.  Choosing a
+coordinate system $x,y,z$ in which the rope has $z=0$ and $y$ is
+vertical, we find that the Euler force is simply $(-\Omega y,\Omega x)$.
+
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics{skipping_rope_diagram.pdf}
+    \caption{Caption here\label{skipping_stickman}}
+  \end{center}
+\end{figure}
+
+\cite{lowry1951}
+
+
+<<>>=
+(1:10)^2
+@ 
+
+\bibliography{template}
+
+\end{document}
+
+
