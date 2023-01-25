@@ -3,22 +3,22 @@ library("deSolve")
 ## Here, "Time" means "distance along the x axis"
 
     
-     LVmod <- function(Time, State, Pars) {
-       with(as.list(c(State, Pars)), {
-         dy        <- ydash
-         dydash    <- (1-2*a*Time*ydash)*(1+ydash^2)/(a*Time^2 + y)
-         dl        <- sqrt(1+ydash^2)
-         return(list(c(dy,dydash,dl)))
-       })
-     }
-     
-     pars  <- c(a=1) # rotation rate
-     yini  <- c(y=1,ydash=1,l=0)
+LVmod <- function(Time, State, Pars) {
+  with(as.list(c(State, Pars)), {
+    dy        <- ydash
+    dydash    <- (1-2*a*Time*ydash)*(1+ydash^2)/(a*Time^2 + y)
+    dl        <- sqrt(1+ydash^2)
+    return(list(c(dy,dydash,dl)))
+  })
+}
 
-     times <- seq(1, 10, by = 0.1)
-     out   <- ode(yini, times, LVmod, pars)
-     summary(out)
-     
+pars  <- c(a=1) # rotation rate
+yini  <- c(y=1,ydash=1,l=0)
+
+times <- seq(1, 10, by = 0.1)
+out   <- ode(yini, times, LVmod, pars)
+summary(out)
+
 
 ## Object 'out' has 4 columns: Time [x distance], y,ydash [y distance
 ## and gradient], and "l" which is string length coordinate.
