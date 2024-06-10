@@ -14,7 +14,7 @@
 
 
 %% just as usual
-\author{Robin K. S. Hankin\\Auckland University of Technology}
+\author{Robin K. S. Hankin\\University of Stirling}
 \title{Skipping ropes}
 %\VignetteIndexEntry{The foo package}
 
@@ -43,11 +43,8 @@
 %% in the following format:
 \Address{
   Robin K. S. Hankin\\
-  Auckland University of Technology\\
-  2-14 Wakefield Street\\
-  Auckland, New Zealand\\
-  E-mail: \email{hankin.robin@gmail.com}\\
-  URL: \url{https://www.aut.ac.nz/profiles/robin-hankin}
+  University of Stirling\\
+  E-mail: \email{hankin.robin@gmail.com}
 }
 
 
